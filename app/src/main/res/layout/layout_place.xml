@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="?attr/selectableItemBackground"
+        android:id="@+id/layout_place_root">
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            app:materialIcon="map_marker"
+            android:id="@+id/iv_marker"
+            app:materialIconColor="@color/black_overlay"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/iv_marker"
+            android:layout_toEndOf="@+id/iv_marker"
+            android:layout_centerVertical="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Iwo"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:id="@+id/tv_place_name_primary"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="More address of Iwo"
+                android:id="@+id/tv_place_name_secondary"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="goride.com.goride">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:name="com.goride.GoRideApplication"
+        android:theme="@style/AppTheme">
+
+        <!--
+            The API key for Google Maps-based APIs is defined as a string resource.
+            (See the file "res/values/google_maps_api.xml").
+            Note that the API key is linked to the encryption key used to sign the APK.
+            You need a different API key for each encryption key, including the release key that is used to
+            sign the APK for publishing.
+            You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name="com.goride.ui.activities.Splash"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.goride.SplashScreen" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.goride.HomePage.HomePage" />
+
+        <activity android:name="com.goride.HomePage.HomePage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name="com.goride.FirstPage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.goride.login.LoginActivity"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name="com.goride.FragmentNotifications"
+            android:label="Notifications"
+            android:parentActivityName="com.goride.HomePage.HomePage" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.goride.HomePage.HomePage" />
+
+        <activity android:name="com.goride.NearByDrivers.SearchingNearbyDrivers"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.goride.BookingAccepted.BookingAccepted" />
+        <activity android:name="com.goride.RateDriver.RateDriver" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.goride.HomePage.HomePage" />
+
+        <activity
+            android:name="com.goride.InviteFriends.FragmentInviteFriends"
+            android:label="Invite Friends"
+            android:parentActivityName="com.goride.HomePage.HomePage" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.goride.HomePage.HomePage" />
+
+        <activity
+            android:name="com.goride.FreeRides.FreeRides"
+            android:label="Free Rides"
+            android:parentActivityName="com.goride.HomePage.HomePage" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.goride.HomePage.HomePage" />
+
+        <activity android:name="com.goride.RewardedAd"></activity>
+
+
+        <activity android:name="com.goride.Register"
+            android:label="New User Signup"
+            android:parentActivityName="com.goride.FirstPage" />
+        <activity android:name="com.goride.ui.activities.PlaceAutoCompleteActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+    </application>
+
+</manifest>
