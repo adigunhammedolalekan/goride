@@ -53,7 +53,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.goride.FragmentNotifications;
+import com.goride.FreeRides.FreeRides;
 import com.goride.GoRideApplication;
+import com.goride.InviteFriends.FragmentInviteFriends;
 import com.goride.MainFragment;
 import com.goride.NearByDrivers.SearchingNearbyDrivers;
 import com.goride.base.BaseActivity;
@@ -226,14 +229,23 @@ public class HomePage extends BaseActivity
 
         } else if (id == R.id.nav_free_rides) {
 
+            Intent intent = new Intent(this, FreeRides.class);
+            startActivity(intent);
+
         } else if (id == R.id.nav_history) {
 
         } else if (id == R.id.nav_invite_Friends) {
+
+            Intent intent = new Intent(this, FragmentInviteFriends.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_help) {
 
         } else if (id == R.id.nav_drive_with_GoRide) {
 
+        }else if (id == R.id.nav_notification) {
+            Intent intent = new Intent(this, FragmentNotifications.class);
+            startActivity(intent);
         }
 
         drawer.closeDrawer(GravityCompat.START);
@@ -287,14 +299,16 @@ public class HomePage extends BaseActivity
     }
 
     private void initLocation(boolean shouldFetchAddress) {
+        L.fine("Init Location!");
         if(mCurrentLocation != null) {
 
+            L.fine("Current Location " + mCurrentLocation.toString());
             if(mCurrentLocationMarker != null)
                 mCurrentLocationMarker.remove();
 
             mCurrentLocationMarker = mMap.addMarker(new MarkerOptions().position(
                     new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude())).title(addressString).snippet(addressString));
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()), 18f));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()), 15f));
 
             if(shouldFetchAddress)
                 GoRideApplication.getApplication()
@@ -368,6 +382,7 @@ public class HomePage extends BaseActivity
                 switch (resultCode) {
                     case RESULT_OK:
                         Place destination = PlaceAutocomplete.getPlace(this, data);
+                        destinationAddress = destination.getAddress().toString();
                         initDestination(destination);
                         break;
                     case RESULT_CANCELED:
@@ -484,7 +499,11 @@ public class HomePage extends BaseActivity
 
         Intent intent = new Intent(this, SearchingNearbyDrivers.class);
         Bundle extras = new Bundle();
+        Location location = new Location("");
+        location.setLatitude(mDestinationLatLng.latitude);
+        location.setLongitude(mDestinationLatLng.longitude);
         extras.putParcelable(SearchingNearbyDrivers.EXTRA_LOCATION, mCurrentLocation);
+        extras.putParcelable(SearchingNearbyDrivers.EXTRA_DESTINATION_LOCATION, location);
         extras.putString("key_pickup_address", addressString);
         extras.putString("key_destination_address", destinationAddress);
         intent.putExtras(extras);

@@ -31,6 +31,7 @@ public class SearchingNearbyDrivers extends BaseActivity {
 
     public static int RADIUS = 1;
     public static final String EXTRA_LOCATION = "current_location";
+    public static final String EXTRA_DESTINATION_LOCATION = "destination_location";
 
     private GeoQuery geoQuery;
     private String destinationAddress = "", pickupAddress = "";
@@ -58,12 +59,17 @@ public class SearchingNearbyDrivers extends BaseActivity {
         Bundle extras = intent.getExtras();
 
         pickupLocation = extras.getParcelable(EXTRA_LOCATION);
+        destinationLocation = extras.getParcelable(EXTRA_DESTINATION_LOCATION);
         pickupAddress = extras.getString("key_pickup_address");
         destinationAddress = extras.getString("key_destination_address");
+
+        if (pickupLocation != null)
+            L.fine("Pick up ==> " + pickupLocation);
         findClosestDriver();
     }
     void findClosestDriver() {
 
+        L.fine("Finding driver---");
         DatabaseReference databaseReference = FirebaseDatabase
                 .getInstance().getReference().child("online_drivers");
         GeoFire geoFire = new GeoFire(databaseReference);
@@ -149,6 +155,7 @@ public class SearchingNearbyDrivers extends BaseActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
                             if(dataSnapshot != null) {
+                                L.fine("New Payload ==> " + dataSnapshot.toString());
                                 Ride ride = dataSnapshot.getValue(Ride.class);
                                 if(ride != null) {
                                     processRideStatus(ride);
@@ -158,7 +165,7 @@ public class SearchingNearbyDrivers extends BaseActivity {
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-
+                            L.fine("Database Error " + databaseError);
                         }
                     });
 
@@ -173,6 +180,7 @@ public class SearchingNearbyDrivers extends BaseActivity {
     private void processRideStatus(Ride ride) {
 
         String status = ride.getStatus().trim();
+        L.fine("New ride status ==> " + status);
         switch (status) {
             case "accepted":
                 bookingAccepted(ride);
@@ -191,5 +199,7 @@ public class SearchingNearbyDrivers extends BaseActivity {
         try {
             intent.putExtra("ride", ride.toJson());
         }catch (JSONException ignored) {/*should never happen. */}
+
+        startActivity(intent);
     }
 }

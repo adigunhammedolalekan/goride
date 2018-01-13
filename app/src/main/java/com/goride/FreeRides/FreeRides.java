@@ -7,10 +7,12 @@ import android.view.View;
 
 import com.goride.InviteFriends.FragmentInviteFriends;
 import com.goride.RewardedAd;
+import com.goride.base.BaseActivity;
 
+import butterknife.OnClick;
 import goride.com.goride.R;
 
-public class FreeRides extends AppCompatActivity {
+public class FreeRides extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,15 +20,14 @@ public class FreeRides extends AppCompatActivity {
         setContentView(R.layout.activity_free_rides);
     }
 
-    public void goToInviteFriends(View view) {
+    @OnClick(R.id.btn_go_to_invite_friends) public void goToInviteFriends() {
 
         Intent intent = new Intent(this, FragmentInviteFriends.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.fade_out);
     }
 
-    public void goToRewardedAd(View view) {
-
+    @OnClick(R.id.btn_go_to_rewarded_ad) public void goToRewarded() {
         Intent intent = new Intent(this, RewardedAd.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.fade_out);

@@ -20,6 +20,9 @@ public class Ride {
     private String pickupAddress = "";
     private String status = "newRide";
 
+
+    public Ride() {}
+
     public Ride(String driverID, String customerID, double pickupLat, double pickupLon,
                 double destinationLat, double destinationLon,
                 String destinationAddress, String pickupAddress, String status) {

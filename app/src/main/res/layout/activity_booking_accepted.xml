@@ -364,6 +364,7 @@
                         android:layout_marginTop="8dp"
                         android:background="@color/red"
                         android:text="CANCEL BOOKING"
+                        android:id="@+id/btn_cancel_booking"
                         android:textColor="@color/white" />
                 </LinearLayout>
             </LinearLayout>

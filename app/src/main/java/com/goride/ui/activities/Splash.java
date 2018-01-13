@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.goride.FirstPage;
 import com.goride.HomePage.HomePage;
 import com.goride.base.BaseActivity;
+import com.goride.util.L;
 ;import goride.com.goride.R;
 
 /**
@@ -42,6 +43,7 @@ public class Splash extends BaseActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
         if(user != null) {
+            L.fine("Current User ==> " + user.getUid() + " " + user.getDisplayName());
             launch(HomePage.class);
         }else {
             launch(FirstPage.class);

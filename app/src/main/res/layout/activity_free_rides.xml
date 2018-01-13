@@ -80,6 +80,7 @@
                             android:layout_marginTop="11dp"
                             android:background="@drawable/round_btn_blue"
                             android:text="Continue"
+                            android:id="@+id/btn_go_to_invite_friends"
                             android:onClick="goToInviteFriends"
                             android:textColor="@color/white"
                             android:textSize="12sp"
@@ -161,18 +162,16 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="35dp"
-                            android:layout_below="@id/notificationDetails"
+                            android:layout_below="@+id/notificationDetails"
                             android:layout_gravity="right"
                             android:layout_marginTop="11dp"
                             android:background="@drawable/round_btn_blue"
                             android:text="Continue"
                             android:textColor="@color/white"
                             android:textSize="12sp"
+                            android:id="@+id/btn_go_to_rewarded_ad"
                             android:onClick="goToRewardedAd"
-                            android:textStyle="bold"
-
-
-                            />
+                            android:textStyle="bold"/>
 
 
                     </LinearLayout>
